@@ -1,0 +1,115 @@
+*{
+    box-sizing: border-box;
+}
+
+
+
+body{
+    background-image: url(https://foter.com/photos/398/cloud-wind-snow.jpg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    height: 100%;
+    background-position: center;
+}
+
+.wrapper{
+    
+    width: 800px;
+    max-width: 100%; /*jesli mamy ekrany, na ktorych 800px sie zmiesci, jak mamy mneijsze, szerokosc jest zmniejszana do 100% ekranu*/
+    margin: 0 auto;
+}
+
+
+.header{
+    display: flex;
+    align-items: flex-start;
+    margin: 30px;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 40px;
+
+}
+
+.nav{
+    background: black;
+    color: white;
+    position: fixed;
+    display: inline;
+    font-size: 20px;
+
+}
+.nav a{
+    
+    background: black;
+    
+}
+
+.menu{
+    display: block;
+}
+
+
+.title{
+    font-size: 36px;
+    position: relative;
+    top: 30px;
+    background: transparent;
+}
+
+.main{
+    background: transparent;
+}
+
+
+
+@media (max-width: 500px){
+    .menu-desktop,
+    .menu-tablet{
+        display: none
+    }
+
+    .nav a{
+        display: inline-block;
+        text-align: center;
+        border-left: 1px solid #f513e2;
+        border-right: 1px solid #f513e2;
+        text-decoration: none;
+        color: white;
+        padding: 10px;
+        
+    
+    }
+
+    
+}
+
+@media (min-width: 501px){
+   
+    .menu-mobile{
+        display:none;
+    }
+
+}
+
+
+    .nav a{
+        display: inline-block;
+        text-align: center;
+        border-left: 1px solid #f513e2;
+        border-right: 1px solid #f513e2;
+        text-decoration: none;
+        color: white;
+        padding: 0 10px 0 10px;
+        
+    
+    }
+
+@media (max-width: 500px){
+    .menu{
+        display: none;
+    }
+    .menu-mobile:hover + .menu  {
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
