@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="normalize.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap&subset=latin-ext" rel="stylesheet">
+    <link href="task4style.css" rel="stylesheet">
+
+    <title>Super Newsy</title>
+
+</head>
+<body>
+    <div class="wrapper"></div>
+        <nav>
+            <div class="container">
+                <a href="#">Nazwa firmy</a>
+                <a href="#">o nas </a>
+                <a href="#">oferta</a>
+                <a href="#">kontakt</a>
+            </div>  
+        </nav>
+        
+    
+    <header class="header">
+        <img class="header__image" src="https://picsum.photos/id/665/200/300?grayscale" alt="fdfsdg" >
+        <h2 class="header__heading">Super Newsy</h2>
+    </header> 
+
+    <main class="main">
+        <h2 class="main__heading">Tytuł artykułu</h2>
+        <time datetime="2019-10-08 13:23" class="article--red">08/10/19</time>
+
+        <figure>
+        <img src="https://via.placeholder.com/300/300
+        C/O https://placeholder.com/" alt="photo artykulu" text="here put your pic">
+        <figcaption>podpis pod zdjeciem</figcaption>
+        </figure>
+
+        <h3>WSTEP</h3>
+        <main class="mainContent">
+            <p class="mainContent__paragraph">Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+                Ullam minima, delectus officia quaerat assumenda in similique? Laudantium dolorem obcaecati,
+                 eum magnam veritatis corporis omnis voluptates, molestiae dolore, sit ipsa consectetur?
+            </p>
+            <p class="mainContent__paragraph">Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+                    Ullam minima, delectus officia quaerat assumenda in similique? Laudantium dolorem obcaecati,
+                     eum magnam veritatis corporis omnis voluptates, molestiae dolore, sit ipsa consectetur?
+            </p>
+        </main> 
+        <span class="article--red">Autor artykułu</span>
+    </main>
+   
+    <form action="#" method="post" class="form">
+        <label class="form__label form__label--author">Autor komentarza
+            <input class="form__input--name" type="text" name="name" id="name" placeholder="Enter your name" required>
+         </label> <br>
+        <label> Email autora komentarza
+            <input class="form__input--email" type="email" name="email" id="email" placeholder="Enter ..." required> 
+        </label><br>
+        <label>Komentarz:</label>
+            <textarea class="form__input--textarea" id="comment" name="comment" placeholder="Wstaw swoj komentarz.." required></textarea>
+            <br>
+        <button type="submit">zapisz</button>
+    </form>
+
+
+    </div>
+</body>
+</html>

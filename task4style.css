@@ -1,0 +1,66 @@
+*{
+    box-sizing: border-box;
+}
+
+
+
+body{
+    background-image: url(https://foter.com/d/d.php?f=https%3A%2F%2Flive.staticflickr.com%2F2333%2F2480896062_80e1f9eaf3_o.jpg&s=e42387f2640176494b333d98e5ed7ccc);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    height: 100%;
+    background-position: center;
+}
+
+.wrapper{
+    background: #fff;
+    width: 800px;
+    max-width: 100%; /*jesli mamy ekrany, na ktorych 800px sie zmiesci, jak mamy mneijsze, szerokosc jest zmniejszana do 100% ekranu*/
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 33.33%);
+    grid-template-areas: 
+    "header header header"
+    "nav nav nav"
+    "main main aside";
+
+
+}
+
+header{
+    display: flex;
+    align-items: center;
+    grid-area: header;
+}
+
+nav{
+   
+    grid-area: nav;
+    position: fixed;
+}
+
+nav a{
+    display: inline-block;
+    position: center;
+    top: 0;
+    width: 24%;
+    text-align: center;
+    border: 1px solid #326666;
+    text-decoration: none;
+    background: rgb(17, 151, 62);
+    border-radius: 15px;
+    
+}
+nav a:hover{
+    background: darkmagenta;
+    color: white;
+
+}
+
+main{
+    grid-area: main;
+}
+
+aside{
+    grid-area: aside;
+}
