@@ -1,0 +1,24 @@
+.data-button {
+    display: block;
+    border-radius: 15px;
+    background: black;
+    border: solid 1px black;
+    color: white;
+    font-size: 24px;
+    padding: 50px 100px 50px 100px;
+    margin: 0 10px;
+}
+
+.data-button:hover {
+    transition: 0.4s;
+    cursor: pointer;
+    border-color: black;
+    color: black;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: center;
+}
