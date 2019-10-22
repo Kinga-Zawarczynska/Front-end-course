@@ -109,17 +109,24 @@ function onActionButtonClick() {
     girls.forEach(item => console.log(item.name));*/
 
     //zad FINAL
-    const doZwiekszenia = initialData.filter(item => typeof(item) == 'number');
+    /*const doZwiekszenia = initialData.filter(item => typeof(item) == 'number');
     console.log(doZwiekszenia);
     const zwiekszone = doZwiekszenia.map (item );
-    console.log(zwiekszone);
+    console.log(zwiekszone);*/
         
-    
+    //zad z const = car wypisz wartości keys
+    /*Object.keys(car).forEach(key => {
+        console.log(car[key]);
+    })*/
 
+    const temporary = Object.entries(car);
+    console.log(temporary);
+    const copy = {};
+    temporary.forEach(item => { 
+        copy[item[0]] = item[1];
+        
+    });
 
-
-
-    
 
 
 }
