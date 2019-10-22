@@ -10,11 +10,7 @@ const car = {
     cost: 34500,
 }
 
-const person = {
-    name: 'Adam',
-    city: 'Gdansk',
-    jobs: ['Scalac', 'InfoShare'],
-}
+
 
 const objectArray = [
     {name: 'Adam', isMale: true, age: 77},
@@ -32,8 +28,44 @@ const initialData2 = [1, 3, 5, 1, 1, 6];
     name: 'Anielka',
 };*/
 
+const person2 = {
+    name: 'Kinga',
+    city: 'Gdańsk',
+    jobs: ['Scalac', 'InfoShare'],
+    family: {
+        mother: {
+            name: 'Dagmara',
+            city: 'Gdańsk'
+
+        },
+        father: {
+            name: 'Wojtek',
+            city: 'Wrocław'
+        }
+    }
+}
+
 const dataForMath = [1, 1.44, 5, 8.99, 7];
 function onActionButtonClick() {
+
+    const {
+        family: {
+            mother, 
+            father,
+            mother: 
+                {name: mothername},
+            father: 
+                {name: fathername}
+            },  
+        
+        name: myName, 
+        city,
+        jobs: [jobA, jobB]
+        
+
+    } = person2
+
+    console.log(mother, father, mothername, fathername, myName, city, jobA, jobB)
 
     //zad 1
     /*const lancuch = initialData.join(' ');
@@ -119,13 +151,24 @@ function onActionButtonClick() {
         console.log(car[key]);
     })*/
 
-    const temporary = Object.entries(car);
+    //zad sklonuj car
+    /*const temporary = Object.entries(car);
     console.log(temporary);
     const copy = {};
     temporary.forEach(item => { 
         copy[item[0]] = item[1];
         
-    });
+    });*/
+
+    //zad wyciaganie zmiennych
+    /*const {
+        company: newCompany = 'Nissan',
+        type: newType,
+        engine = 'V8'
+
+    } = car; 
+
+    console.log(newCompany, newType, engine);*/
 
 
 
