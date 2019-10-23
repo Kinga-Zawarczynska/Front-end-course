@@ -183,9 +183,9 @@ var teachers = [
 var o_count2 = document.querySelector("#display");
 
 var o_html2 = "";
-
+o_html2 = `<div class="naglowek"> ${"Studenci"} </div>`;
 students.map(element => {
-  o_html2 = `<div class="naglowek"> ${"Studenci"} </div>`;
+  
   o_html2 += ` 
   <div class = "row"> 
 <div class="item"> ${element.name}</div> 
@@ -195,7 +195,7 @@ students.map(element => {
 
 </div>`;
 });
-
+o_html2 += `<div class="naglowek"> ${"Nuczyciele"} </div>`;
 teachers.map(element => {
   o_html2 += `<div class = "row"> 
   <div class="item"> ${element.name}</div> 
