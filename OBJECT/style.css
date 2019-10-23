@@ -17,6 +17,8 @@
     justify-content: space-around;
 
     font-weight: bold;
+    border: 1px solid #212121;
+    background: rgb(228, 150, 150);
 }
 
 #display div{
