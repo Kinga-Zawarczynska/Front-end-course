@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>People App</title>
+
+    <style>
+        
+        .people > div {display: inline-block; width: 20%;}
+        #records > div > div {display: inline-block; width: 20%}
+        .people2 > div {display: inline-block; width: 20%}
+        #records2 > div > div {display: inline-block; width: 20%}
+        h1 { display: flex; justify-content: center;}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div>
+            <input id="inputName" placeholder="Imię osoby w infoshare" />
+        </div>
+        <div>
+            <input id="inputSurname" value="Snow" placeholder="Nazwisko osoby w infoshare" />
+        </div>
+        <div>
+            <input id="inputAge" placeholder="Wiek osoby w infoshare" />
+        </div>
+        <div>
+            <input id="inputRole" placeholder="Funkcja osoby w infoshare" />
+        </div>
+        <button id="addButton">Dodaj do czarnej listy</button>
+        <button id="addButton2">Dodaj do białej listy</button>
+    </div>
+    <h1> CZARNA LISTA</h1>
+    <hr/>
+    <div class="container">
+        <div class="people">
+            <div class="people__name people__name--head">
+                Imię
+            </div>
+            <div class="people__surname people__surname--head">
+                Nazwisko
+            </div>
+            <div class="people__age people__age--head">
+                Wiek
+            </div>
+            <div class="people__role people__role--head">
+                Funkcja
+            </div>
+        </div>
+        <div id="records">
+
+        </div>
+    </div>
+    <hr>
+    <br>
+    <h1> BIAŁA LISTA</h1>
+
+    <hr>
+    <div class="container2">
+        <div class="people2">
+            <div class="people__name2 people__name--head">
+                Imię
+            </div>
+            <div class="people__surname2 people__surname--head">
+                Nazwisko
+            </div>
+            <div class="people__age2 people__age--head">
+                Wiek
+            </div>
+            <div class="people__role2 people__role--head">
+                Funkcja
+            </div>
+        </div>
+        <div id="records2">
+
+        </div>
+    </div>
+    <hr>
+
+
+    <script src="./script.js"></script>
+</body>
+</html>
