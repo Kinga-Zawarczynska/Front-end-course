@@ -10,6 +10,8 @@ function PersonDB() {
   PersonDB.prototype.removePerson = function(removeIndex) {
     this.database.splice(removeIndex, 1);
     renderInstance.setHtml(dbInstance.database);
+    renderInstance.setHtml(dbInstance2.database);
+    
     
   };
   
@@ -28,7 +30,7 @@ function PersonDB() {
   
   
   // Class for render methods
-  function Render(container, container2, button, button2, inputName, inputSurname, inputAge, inputRole) {
+  function Render(container, container2, button, button2, inputName, inputSurname, inputAge, inputRole, db) {
     this.container = document.getElementById(container);
     this.container2 = document.getElementById(container2);
     this.button = document.getElementById(button);
@@ -37,6 +39,7 @@ function PersonDB() {
     this.inputSurname = document.getElementById(inputSurname);
     this.inputAge = document.getElementById(inputAge);
     this.inputRole = document.getElementById(inputRole);
+    this.db = db;
   };
 
  
@@ -45,11 +48,13 @@ function PersonDB() {
   
   
   Render.prototype.renderRow = function(name, surname, age, role, index) {
-    return '<div><div>' + name + '</div><div>' + surname + '</div><div>' + age + '</div><div>' + role + '</div><button onclick="dbInstance.removePerson('+index+')">Jednak lubię tą osobę</button></div>';
+    return '<div><div>' + name + '</div><div>' + surname + '</div><div>' + age + '</div><div>' + role + '</div><button onclick="dbInstance.removePerson('+index+')">Usuń z listy</button></div>';
   };
   
   Render.prototype.setHtml = function(database, container) {
-    container.innerHTML = '';
+    container ? container.innerHTML = '' : null;
+    
+    console.log('set html', database, container)
     var self = this;
     database.map(function(person, index){
       container.innerHTML += self.renderRow(person.name, person.surname, person.age, person.role, index);
@@ -89,6 +94,6 @@ function PersonDB() {
   var dbInstance2 = new PersonDB();
   
   // Create object of Render
-  var renderInstance = new Render('records', 'records2',  'addButton', 'addButton2', 'inputName', 'inputSurname', 'inputAge', 'inputRole');
+  var renderInstance = new Render('records', 'records2',  'addButton', 'addButton2', 'inputName', 'inputSurname', 'inputAge', 'inputRole', dbInstance2, dbInstance2);
   renderInstance.addClick();
   renderInstance.setHtml(dbInstance.database);
