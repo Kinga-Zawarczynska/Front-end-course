@@ -86,12 +86,13 @@ var students = [
 
   var o_count = document.querySelector("#students");
   var o_count2 = document.querySelector("#teachers");
+
   
-  function renderStudents(){
+  function render(arrayToMap, elementToRender, groupOf){
     console.log(students);
     var o_html = "";
-  o_html = `<div class="naglowek"> ${"Studenci"} </div>`;
-  students.map(element => {
+  o_html = `<div class="naglowek"> ${groupOf} </div>`;
+  arrayToMap.map(element => {
     
     o_html+= ` 
     <div class = "row"> 
@@ -103,28 +104,12 @@ var students = [
   
   </div>`
   })
-  o_count.innerHTML += o_html;
-}
-function renderTeachers(){
-
-  var o_html2 = "";
-  o_html2 += `<div class="naglowek"> ${"Nuczyciele"} </div>`;
-  teachers.map(element => {
-    o_html2 += `<div class = "row"> 
-    <div class="item"> ${element.name}</div> 
-    <div class="item"> ${element.surname}</div>
-    <div class="item"> ${element.age}</div>
-    <div class="item"> ${element.role}</div>
-    
-    </div>`;
-  })
-  
-  o_count2.innerHTML += o_html2;
-
+  elementToRender.innerHTML = o_html;
 }
 
-renderStudents();
-renderTeachers();
+
+render(students, o_count, 'Studenci');
+render(teachers, o_count2, 'Nauczyciele');
 
 
 
@@ -172,7 +157,7 @@ renderTeachers();
 //   }
  
   function addStudent(){
-    const o_count = ""
+const o_count = ""
     const inputName = document.querySelector('#inputName');
   console.log(inputName.value)
   const inputSurname = document.querySelector('#inputSurname');
@@ -181,7 +166,7 @@ renderTeachers();
   console.log(inputAge.value)
 
       students.push( new Student(inputName.value, inputSurname.value, inputAge.value ))
-      renderStudents();
+      render();
      
   };
 
