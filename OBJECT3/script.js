@@ -45,12 +45,15 @@ var students = [
     new Student("Doris", 12, 'B', "Gdańsk", 0927)
   ];
   var teachers = [
-    new Teacher("Doris", 12, 'B', "Gdańsk", 0927),
-    new Teacher("Franek", 12, 'A', "Gdańsk", 8759),
-    new Teacher("Andrzej", 12, 'A',"Gdańsk", 4563),
-    new Teacher("Ada", 12, 'B', "Gdańsk", 4567),
-    new Teacher("Kamil", 12, 'A', "Gdańsk", 1223)
+    new Teacher("Ela", 12, 'B', "Gdańsk", 0927),
+    new Teacher("Edek", 12, 'A', "Gdańsk", 8759),
+    new Teacher("Kacper", 12, 'A',"Gdańsk", 4563),
+    new Teacher("Basia", 12, 'B', "Gdańsk", 4567),
+    new Teacher("Filip", 12, 'A', "Gdańsk", 1223)
   ];
+
+  students.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
+  teachers.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
   
   var o_count2 = document.querySelector("#display");
   
