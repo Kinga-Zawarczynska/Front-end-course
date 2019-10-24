@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="lista.css">
+    <title>Lista zadań</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <h1>Lista zadań</h1>
+
+      <div class="formularz">
+        <div class="dodaj-zad">
+          <form action="">
+            <input type="text" id="zadanie" />
+            <input type="number" id="czas" />
+
+          </form>
+
+          <div class="button">
+                <button onclick="onTaskAdd()">Dodaj zadanie</button>
+              </div>
+        </div>
+        <div class="tabela">
+          <div class="header-tab">
+          </div>
+          <div class="tabela-content"></div>
+        </div>
+      </div>
+    </div>
+    <script src="lista.js"></script
+  </body>
+</html>
