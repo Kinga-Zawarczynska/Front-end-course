@@ -117,7 +117,7 @@ const inputAge = document.querySelector("#inputAge");
 const buttonS = document.getElementById("addButton");
 const buttonT = document.getElementById("addButton2");
 
-function add(arrayToPush, classOnArray) {
+function add() {
   const o_count = "";
   const inputName = document.querySelector("#inputName");
   console.log(inputName.value);
@@ -126,15 +126,15 @@ function add(arrayToPush, classOnArray) {
   const inputAge = document.querySelector("#inputAge");
   console.log(inputAge.value);
 
-  arrayToPush.push(
-    new classOnArray(inputName.value, inputSurname.value, inputAge.value)
+  students.push(
+    new Student(inputName.value, inputSurname.value, inputAge.value)
   );
-  render();
+  render(students, o_count, "Studenci");
 }
 
 
 buttonS.addEventListener("click", add);
-buttonT.addEventListener("click", add);
+buttonT.addEventListener("click", add(teachers, Teacher));
 
 students.sort((a, b) => (a.name > b.name ? 1 : b.name > a.name ? -1 : 1));
 teachers.sort((a, b) => (a.name > b.name ? 1 : b.name > a.name ? -1 : 1));
