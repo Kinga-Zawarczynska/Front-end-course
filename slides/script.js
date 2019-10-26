@@ -11,7 +11,7 @@ manualSlides(slideIndex);
 
 
  
-        // Next/previous controls
+       // Next/previous controls
 function plusSlides(n) {
     manualSlides(slideIndex += n);
   }
@@ -65,6 +65,5 @@ function autoSlides() {
 
 
 
-// var slideIndex = 1;
-// showSlides(slideIndex);
+
 
