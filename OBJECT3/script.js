@@ -118,7 +118,7 @@ const buttonS = document.getElementById("addButton");
 const buttonT = document.getElementById("addButton2");
 
 function add() {
-  const o_count = "";
+  // const o_count = "";
   const inputName = document.querySelector("#inputName");
   console.log(inputName.value);
   const inputSurname = document.querySelector("#inputSurname");
