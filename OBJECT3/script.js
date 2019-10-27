@@ -4,6 +4,18 @@ class Person {
     this.surname = surname;
     this.pesel = pesel;
   }
+
+  // get name(){
+  //    this.pesel.replace(this.pesel.slice(1,8), "########"); 
+  //   return pesel; 
+
+   
+    // var str = this.pesel.split('');
+    // str.splice(2, 8, '########');
+    // str = str.join('');
+    // return str;
+    
+// }
 }
 
 class Student extends Person {
