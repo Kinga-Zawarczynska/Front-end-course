@@ -2,13 +2,14 @@ var slideIndex = 1;
 manualSlides(slideIndex);
 
 
- const mouse = document.querySelector('.slideshow-container');
+//  const mouse = document.querySelector('.slideshow-container');
  const wrapper = document.querySelector('.wrapper');
 
- wrapper.addEventListener("mouseover", autoSlides);
- mouse.addEventListener("mouseover", manualSlides);
+ wrapper.addEventListener("mouseenter", manualSlides);
+ wrapper.addEventListener("mouseleave", autoSlides);
+//  mouse.addEventListener("mouseover", manualSlides);
 
-
+var timeOut;
 
  
         // Next/previous controls
@@ -22,6 +23,8 @@ function plusSlides(n) {
   }
   
   function manualSlides(n) {
+    console.log('manualSlides');
+    clearTimeout(timeOut);
     var i;
     var slides = document.getElementsByClassName("mySlides");
     var dots = document.getElementsByClassName("dot");
@@ -45,6 +48,7 @@ autoSlides(autoSlideIndex);
 
 
 function autoSlides() {
+  console.log('autoSlides');
   var i;
   var slides = document.getElementsByClassName("mySlides");
   for (i = 0; i < slides.length; i++) {
@@ -53,7 +57,8 @@ function autoSlides() {
   autoSlideIndex++;
   if (autoSlideIndex > slides.length) {autoSlideIndex = 1}
   slides[autoSlideIndex-1].style.display = "block";
-  setTimeout(autoSlides, 3000); // Change image every 2 seconds
+  clearTimeout(timeOut);
+  timeOut = setTimeout(autoSlides, 3000); // Change image every 2 seconds
 } 
 
  
