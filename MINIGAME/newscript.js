@@ -47,14 +47,13 @@ class Fruit {
 
 class MoveFruits {
     static RenderElement (Fruit, domFruit) {
-        
-       
         domFruit.style.top = Fruit._y + "px" ;
     }
 
     static move(fruit){
         setInterval(() => {
-            this.RenderElement;
+            fruit.down();
+            Move.RenderElement(fruit);
 
         }, 1000);
 
