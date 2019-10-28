@@ -52,11 +52,11 @@ class MoveFruits {
         domFruit.style.top = Fruit._y + "px" ;
     }
 
-    static move(fruit){
-        setInterval(){
-            
-        }
-    }
+    // static move(fruit){
+    //     setInterval(){
+
+    //     }
+    // }
 
 }
 
