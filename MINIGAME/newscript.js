@@ -53,6 +53,13 @@ class MoveFruits {
     static move(fruit){
             fruit.down();
             Move.RenderElement(fruit, domFruit);
+
+            if (domFruit._y > 760){
+                domFruit.reset();
+            MoveFruits.RenderElement(Fruit, domFruit);
+
+
+            }
         }
     }
 
@@ -119,7 +126,7 @@ document.addEventListener('keydown', (event) => Move.move(event, player1))
 function start() {
     setInterval(() => {
         MoveFruits.move(fruit1, domFruit);
-    }, 1000)
+    }, 500)
 }
 
 start()
