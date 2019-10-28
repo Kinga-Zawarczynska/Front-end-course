@@ -1,15 +1,30 @@
 class Person {
-  constructor(name, surname) {
+  constructor(name, surname, pesel) {
     this.name = name;
     this.surname = surname;
+    this.pesel = pesel;
   }
+
+  // get name(){
+  //    this.pesel.replace(this.pesel.slice(1,8), "########"); 
+  //   return pesel; 
+
+   
+    // var str = this.pesel.split('');
+    // str.splice(2, 8, '########');
+    // str = str.join('');
+    // return str;
+    
+// }
 }
 
 class Student extends Person {
-  constructor(name, surname, age) {
-    super(name, surname);
+  constructor(name, surname, pesel, age, direction) {
+    super(name, surname, pesel);
     this.role = "student";
     this.age = age;
+    this.direction = direction;
+
   }
 
   displayFullInfo() {
@@ -20,10 +35,10 @@ class Student extends Person {
 }
 
 class Teacher extends Person {
-  constructor(name, surname, age) {
-    super(name, surname);
+  constructor(name, surname, pesel, position) {
+    super(name, surname, pesel);
     this.role = "teacher";
-    this.age = age;
+    this.position = position;
   }
 
   displayFullInfo() {
@@ -33,108 +48,134 @@ class Teacher extends Person {
   }
 }
 
-/*function Render(display, button, button2, inputName, inputSurname, inputAge, inputRole, db) {
-    this.display = document.getElementById(display);
-    this.button = document.getElementById(button);
-    this.button2 = document.getElementById(button2);
-    this.inputName = document.getElementById(inputName);
-    this.inputSurname = document.getElementById(inputSurname);
-    this.inputAge = document.getElementById(inputAge);
-    
-  };
 
-  Render.prototype.getValuesFromInput = function() {
-    return {
-      name: this.inputName.value,
-      surname: this.inputSurname.value,
-      age: this.inputAge.value,
-    }
-  };
 
-  Render.prototype.addClick = function() {
-    var self = this;
-    this.button.addEventListener('click', function(){
-      var person = self.getValuesFromInput();
-  
-      dbInstance.addPerson(person);
-      renderInstance.setHtml(dbInstance.database, self.container);
-    });
 
-    this.button2.addEventListener('click', function(){
-        var person = self.getValuesFromInput();
-    
-        dbInstance2.addPerson(person);
-        renderInstance.setHtml(dbInstance2.database, self.container2);
-      });
-  };
-  */
+
+var checkS = document.getElementById('student');
+var checkT = document.getElementById('nauczyciel');
+
+let itsStudent = false;
+
+
+function disable() {
+  itsStudent = !itsStudent;
+  console.log(itsStudent);
+  let something;
+  let something2;
+  if (itsStudent) {
+    something = `<input id="inputPosition" placeholder="Stanowisko" disabled />`;
+    something2 = `<input id="inputAge" placeholder="Wiek"/> <input id="inputDirection" placeholder="Kierunek studiów" />`
+  } else {
+    something = `<input id="inputPosition" placeholder="Stanowisko" />`
+    something2 = `<input id="inputAge" placeholder="Wiek" disabled/> <input id="inputDirection" placeholder="Kierunek studiów" disabled />`
+  }
+  var dis = document.querySelector('.not');
+  var dis2 = document.querySelector('.notStudent');
+  dis.innerHTML = something
+  dis2.innerHTML = something2;
+}
+// function disableT() {
+//   var dis = document.querySelector('.notDir');
+//   dis.innerHTML = `<input id="inputDirection" placeholder="Kierunek studiów" disabled />`
+//   var dis2 = document.querySelector('.notAge');
+//   dis2.innerHTML = `<input id="inputAge" placeholder="Wiek" disabled/>`;
+// }
+
+checkS.addEventListener('click', disable);
+
 
 var students = [
-  new Student("Kamil", "Kowalski", 12),
-  new Student("Ada", "Kowalski", 12),
-  new Student("Sylwek", "Kowalski", 12),
-  new Student("Basia", "Kowalski", 12),
-  new Student("Kacper", "Kowalski", 12)
+
+
 ];
 var teachers = [
-  new Teacher("Ida", "Kowalski", 42),
-  new Teacher("Franciszek", "Kowalski", 52),
-  new Teacher("Olga", "Kowalski", 42),
-  new Teacher("Michał", "Kowalski", 52),
-  new Teacher("Kamila", "Kowalski", 62)
+
+
 ];
 
 var o_count = document.querySelector("#students");
 var o_count2 = document.querySelector("#teachers");
 
+
+
 function render(arrayToMap, elementToRender, groupOf) {
   console.log(students);
   var o_html = "";
   o_html = `<div class="naglowek"> ${groupOf} </div>`;
+
+
+
   arrayToMap.map(element => {
-    o_html += ` 
+    if (itsStudent) {
+      o_html += ` 
     <div class = "row"> 
   <div class="item"> ${element.name}</div> 
   <div class="item"> ${element.surname}</div>
   <div class="item"> ${element.age}</div>
+  <div class="item"> ${element.pesel}</div>
+  <div class="item"> ${element.direction}</div>
   <div class="item"> ${element.role}</div>
   
   
   </div>`;
+
+    } else {
+      o_html += ` 
+      <div class = "row"> 
+    <div class="item"> ${element.name}</div> 
+    <div class="item"> ${element.surname}</div>
+    <div class="item"> ${element.pesel}</div>
+    <div class="item"> ${element.position}</div>
+    <div class="item"> ${element.role}</div>
+    
+    
+    </div>`;
+  
+    }
+
+
   });
+
   elementToRender.innerHTML = o_html;
 }
+// render(students, o_count, "Studenci");
+// render(teachers, o_count2, "Nauczyciele");
 
-render(students, o_count, "Studenci");
-render(teachers, o_count2, "Nauczyciele");
 
-const inputName = document.querySelector("#inputName");
-
-const inputSurname = document.querySelector("#inputSurname");
-
-const inputAge = document.querySelector("#inputAge");
 
 const buttonS = document.getElementById("addButton");
-const buttonT = document.getElementById("addButton2");
 
-function add(arrayToPush, classOnArray) {
-  const o_count = "";
-  const inputName = document.querySelector("#inputName");
-  console.log(inputName.value);
-  const inputSurname = document.querySelector("#inputSurname");
-  console.log(inputSurname.value);
-  const inputAge = document.querySelector("#inputAge");
-  console.log(inputAge.value);
 
-  arrayToPush.push(
-    new classOnArray(inputName.value, inputSurname.value, inputAge.value)
-  );
-  render();
+function add() {
+  
+    const inputName = document.querySelector("#inputName");
+    const inputSurname = document.querySelector("#inputSurname");
+    const inputAge = document.querySelector("#inputAge");
+    const inputPesel = document.querySelector("#inputPesel");
+    const inputDirection = document.querySelector("#inputDirection");
+    const inputPosition = document.querySelector("#inputPosition");
+    if (itsStudent) {
+
+    students.push(
+      new Student(inputName.value, inputSurname.value, inputAge.value, inputPesel.value, inputDirection.value)
+    );
+    console.log(students)
+    render(students, o_count, "Studenci");
+  } else {
+    teachers.push(
+      new Teacher(inputName.value, inputSurname.value, inputPesel.value, inputPosition.value)
+    );
+    console.log(teachers)
+    render(teachers, o_count2, "Nauczyciele");
+
+  }
+
 }
 
 
 buttonS.addEventListener("click", add);
-buttonT.addEventListener("click", add);
 
-students.sort((a, b) => (a.name > b.name ? 1 : b.name > a.name ? -1 : 1));
-teachers.sort((a, b) => (a.name > b.name ? 1 : b.name > a.name ? -1 : 1));
+
+// students.sort((a, b) => (a.name > b.name ? 1 : b.name > a.name ? -1 : 1));
+// teachers.sort((a, b) => (a.name > b.name ? 1 : b.name > a.name ? -1 : 1));
