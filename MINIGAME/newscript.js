@@ -51,12 +51,8 @@ class MoveFruits {
     }
 
     static move(fruit){
-        setInterval(() => {
             fruit.down();
-            Move.RenderElement(fruit);
-
-        }, 1000);
-
+            Move.RenderElement(fruit, domFruit);
         }
     }
 
@@ -70,17 +66,7 @@ class Move{
     }
 
     static move(event, Player1) {
-        if (event.key === 'ArrowDown') {
-                Player1.down();
-                Move.RenderElement(Player1, domRectagle)
-                console.log('moved down')
-        }
-        else if (event.key === 'ArrowUp'){
-            Player1.up();
-            Move.RenderElement(Player1, domRectagle)
-            console.log('moved up')
-        }
-        else if (event.key === 'ArrowLeft'){
+        if  (event.key === 'ArrowLeft'){
             Player1.left();
             Move.RenderElement(Player1, domRectagle)
             console.log('moved left')
@@ -129,6 +115,14 @@ const player1 = new Player(domRectagle);
 const fruit1 = new Fruit(domFruit);
 
 document.addEventListener('keydown', (event) => Move.move(event, player1))
+
+function start() {
+    setInterval(() => {
+        MoveFruits.move(fruit1, domFruit);
+    }, 1000)
+}
+
+start()
 
 console.log(player1);
 
