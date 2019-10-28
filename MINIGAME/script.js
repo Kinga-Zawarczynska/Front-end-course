@@ -4,9 +4,10 @@ class Player {
         this._x = human.offsetLeft,
         this._y = human.offsetTop
 
-      
     
-    }
+    
+    };
+
 
     left() {
         this._x -= 10;
@@ -22,14 +23,42 @@ class Player {
     }
 
     reset(){
-        this._x = 285;
-        this._y = 285;
+        
+
+
+        this._x = 750
+        this._y = 680
+        
     }
     
 }
 
+class Fruit {
+    constructor(fruit){
+        this._x = Math.random()*1500;
+        this._y = fruit.offsetTop;
+    }
 
+    down() {
+        this._y += 10;
+    }
 
+}
+
+class MoveFruits {
+    static RenderElement (Fruit, domFruit) {
+        
+       
+        domFruit.style.top = Fruit._y + "px" ;
+    }
+
+    static move(fruit){
+        setInterval(){
+            
+        }
+    }
+
+}
 
 
 class Move{
@@ -41,9 +70,9 @@ class Move{
 
     static move(event, Player1) {
         if (event.key === 'ArrowDown') {
-            Player1.down();
-            Move.RenderElement(Player1, domRectagle)
-            console.log('moved down')
+                Player1.down();
+                Move.RenderElement(Player1, domRectagle)
+                console.log('moved down')
         }
         else if (event.key === 'ArrowUp'){
             Player1.up();
@@ -61,23 +90,27 @@ class Move{
             console.log('moved right')
         }
 
-        if (Player1._y >=565){
-            alert('YOU LOST!')
-            reset();
+        if (Player1._y >=775){
+            alert('YOU LOST! PLAY AGAIN :)')
+            Player1.reset();
+            Move.RenderElement(Player1, domRectagle)
         }
         else if (Player1._y <=0){
-            alert('YOU LOST!')
-            reset();
+            alert('YOU LOST! PLAY AGAIN :)')
+            Player1.reset();
+            Move.RenderElement(Player1, domRectagle)
 
         }
-        else if (Player1._x >=565){
-            alert('YOU LOST!')
-            reset();
+        else if (Player1._x >=1600){
+            alert('YOU LOST! PLAY AGAIN :)')
+            Player1.reset();
+            Move.RenderElement(Player1, domRectagle)
 
         }
         else if (Player1._x <=0){
-            alert('YOU LOST!')
-            reset();
+            alert('YOU LOST! PLAY AGAIN :)')
+            Player1.reset();
+            Move.RenderElement(Player1, domRectagle)
 
         }
        
@@ -90,7 +123,9 @@ class Move{
      } //  case Player left
     
 const domRectagle = document.querySelector('.human');
+const domFruit = document.querySelector('.fruit')
 const player1 = new Player(domRectagle);
+const fruit1 = new Fruit(domFruit);
 
 document.addEventListener('keydown', (event) => Move.move(event, player1))
 
