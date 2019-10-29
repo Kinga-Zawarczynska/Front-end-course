@@ -35,30 +35,34 @@ class Player {
 
 class Fruit {
     constructor(fruit){
+        this.domFruit = fruit;
         this._x = Math.random()*1500;
         this._y = fruit.offsetTop;
     }
 
     down() {
-        this._y += 10;
+        this._y += stepOfFalling;
     }
 
 }
 
+const stepOfFalling = 2;
+const intervalOfFalling = 10;
+const intervalOfNewFruit = 2000;
+
 class MoveFruits {
     static RenderElement (Fruit, domFruit) {
         domFruit.style.top = Fruit._y + "px" ;
+        domFruit.style.left = Fruit._x + "px" ;
     }
 
-    static move(fruit){
+    static move(fruit, domFruit){
             fruit.down();
-            Move.RenderElement(fruit, domFruit);
+            MoveFruits.RenderElement(fruit, domFruit);
 
             if (domFruit._y > 760){
                 domFruit.reset();
-            MoveFruits.RenderElement(Fruit, domFruit);
-
-
+                MoveFruits.RenderElement(Fruit, domFruit);
             }
         }
     }
@@ -107,30 +111,36 @@ class Move{
             Move.RenderElement(Player1, domRectagle)
 
         }
-       
+       }  
+     }
 
-    
-      
-
-       }
-        // switch w zaleznosci od strzałka gore, dol, bok
-     } //  case Player left
-    
+const domContainer = document.querySelector('.container');
 const domRectagle = document.querySelector('.human');
-const domFruit = document.querySelector('.fruit')
 const player1 = new Player(domRectagle);
-const fruit1 = new Fruit(domFruit);
 
 document.addEventListener('keydown', (event) => Move.move(event, player1))
 
 function start() {
+    const fruits = [];
+    setInterval(() =>{
+        const newDomFruit = document.createElement('div');
+        newDomFruit.classList.add('fruit');
+        domContainer.appendChild(newDomFruit);
+
+        const newFruit = new Fruit(newDomFruit);
+
+        fruits.push(newFruit);
+    }, intervalOfNewFruit);
+
     setInterval(() => {
-        MoveFruits.move(fruit1, domFruit);
-    }, 500)
+        fruits.forEach(fruit => {
+            MoveFruits.move(fruit, fruit.domFruit);
+        })
+        
+    }, intervalOfFalling
+)
 }
 
 start()
 
 console.log(player1);
-
-// &&  x != 600
