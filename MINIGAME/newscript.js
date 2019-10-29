@@ -15,17 +15,14 @@ class Player {
     right() {
         this._x += 10;
     }
-    up() {
-        this._y -= 10;
-    }
+    // up() {
+    //     this._y -= 10;
+    // }
     down() {
         this._y += 10;
     }
 
     reset(){
-        
-
-
         this._x = 750
         this._y = 680
         
@@ -34,21 +31,21 @@ class Player {
 }
 
 class Fruit {
-    constructor(fruit){
+    constructor(fruit, speed){
         this.domFruit = fruit;
+        this.speed = speed;
         this._x = Math.random()*1500;
         this._y = fruit.offsetTop;
     }
 
     down() {
-        this._y += stepOfFalling;
+        this._y += this.speed;
     }
 
 }
 
-const stepOfFalling = 2;
-const intervalOfFalling = 10;
-const intervalOfNewFruit = 2000;
+
+
 
 class MoveFruits {
     static RenderElement (Fruit, domFruit) {
@@ -57,12 +54,15 @@ class MoveFruits {
     }
 
     static move(fruit, domFruit){
-            fruit.down();
-            MoveFruits.RenderElement(fruit, domFruit);
 
-            if (domFruit._y > 760){
-                domFruit.reset();
-                MoveFruits.RenderElement(Fruit, domFruit);
+
+            if (fruit._y > 760){
+                setTimeout(() => {
+                    domFruit.remove();
+                }, 1000)
+            } else {
+                fruit.down();
+                MoveFruits.RenderElement(fruit, domFruit);
             }
         }
     }
@@ -121,15 +121,20 @@ const player1 = new Player(domRectagle);
 document.addEventListener('keydown', (event) => Move.move(event, player1))
 
 function start() {
+    // const stepOfFalling = 2;
+    const intervalOfFalling = 10;
+    const intervalOfNewFruit = 2000;
     const fruits = [];
     setInterval(() =>{
         const newDomFruit = document.createElement('div');
         newDomFruit.classList.add('fruit');
         domContainer.appendChild(newDomFruit);
-
-        const newFruit = new Fruit(newDomFruit);
+        Fruit
+        const newFruit = new Fruit(newDomFruit, Math.random()*3 + 2);
 
         fruits.push(newFruit);
+
+        // MoveFruits.addFruit(newFruit)
     }, intervalOfNewFruit);
 
     setInterval(() => {
