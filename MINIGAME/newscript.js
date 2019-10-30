@@ -132,7 +132,7 @@ function start() {
  
     fruits.forEach(fruit => {
       console.log(fruitWidth)
-      if (fruit.x + fruitWidth < player.x || player.x + playerWidth < fruit.x || fruit.y + fruitHeight < player.y) {
+      if ((fruit.x + fruitWidth < player.x) && (player.x + playerWidth < fruit.x) && (fruit.y + fruitHeight < player.y)) {
         console.log('KOLIZJA')
         // jestKolizja(fruit); // użytkownik dostaje ounkt
       } else {
