@@ -36,7 +36,6 @@ class Fruit {
 }
 
 class MoveFruits {
-    
   static RenderElement(Fruit, domFruit) {
     domFruit.style.top = Fruit._y + "px";
     domFruit.style.left = Fruit._x + "px";
@@ -119,6 +118,22 @@ function start() {
       MoveFruits.move(fruit, fruit.domFruit);
     });
   }, intervalOfFalling);
+
+  checkCollision((fruits, player) => {
+    fruits.forEach(fruit => {
+      if (fruit.x + fruit.width < player.x || player.x + player.width < fruit.x || fruit.y + fruit.height < player.y) {
+        jestKolizja(fruit); // użytkownik dostaje ounkt
+      } else {
+        nieMaKolizji(); //uzytkownik traci punkt
+      }
+    });
+    return !(
+      getFruit.x + getFruit.width < player.x ||
+      player.x + player.width < getFruit.x ||
+      fruits.y < 680 ||
+      player.y + player.height < fruits.y
+    );
+  });
 }
 
 start();
