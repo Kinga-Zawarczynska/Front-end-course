@@ -4,10 +4,10 @@ class Player {
   }
 
   left() {
-    this._x -= 10;
+    this._x -= 20;
   }
   right() {
-    this._x += 10;
+    this._x += 20;
   }
   // up() {
   //     this._y -= 10;
@@ -26,7 +26,7 @@ class Fruit {
   constructor(fruit, speed) {
     this.domFruit = fruit;
     this.speed = speed;
-    this._x = Math.random() * 1500;
+    this._x = Math.random() * 1100;
     this._y = fruit.offsetTop;
   }
 
@@ -52,6 +52,7 @@ class MoveFruits {
       MoveFruits.RenderElement(fruit, domFruit);
     }
   }
+
 }
 
 class Move {
@@ -100,7 +101,7 @@ document.addEventListener("keydown", event => Move.move(event, player1));
 function start() {
   // const stepOfFalling = 2;
   const intervalOfFalling = 10;
-  const intervalOfNewFruit = 2000;
+  const intervalOfNewFruit = 1000;
   const fruits = [];
   setInterval(() => {
     const newDomFruit = document.createElement("div");
