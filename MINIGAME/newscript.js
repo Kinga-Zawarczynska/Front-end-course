@@ -1,24 +1,31 @@
+const playerWidth = 30;
+const fruitWidth = 30;
+const playerHeight = 30;
+const fruitHeight = 30;
+
+
+
 class Player {
   constructor(human) {
-    (this._x = human.offsetLeft), (this._y = human.offsetTop);
+    (this.x = human.offsetLeft), (this.y = human.offsetTop);
   }
 
   left() {
-    this._x -= 20;
+    this.x -= 10;
   }
   right() {
-    this._x += 20;
+    this.x += 10;
   }
   // up() {
   //     this._y -= 10;
   // }
   down() {
-    this._y += 10;
+    this.y += 10;
   }
 
   reset() {
-    this._x = 750;
-    this._y = 680;
+    this.x = 750;
+    this.y = 680;
   }
 }
 
@@ -26,24 +33,23 @@ class Fruit {
   constructor(fruit, speed) {
     this.domFruit = fruit;
     this.speed = speed;
-    this._x = Math.random() * 1100;
-    this._y = fruit.offsetTop;
+    this.x = Math.random() * 800;
+    this.y = fruit.offsetTop;
   }
 
   down() {
-    this._y += this.speed;
+    this.y += this.speed;
   }
 }
 
 class MoveFruits {
-    
   static RenderElement(Fruit, domFruit) {
-    domFruit.style.top = Fruit._y + "px";
-    domFruit.style.left = Fruit._x + "px";
+    domFruit.style.top = Fruit.y + "px";
+    domFruit.style.left = Fruit.x + "px";
   }
 
   static move(fruit, domFruit) {
-    if (fruit._y > 760) {
+    if (fruit.y > 760) {
       setTimeout(() => {
         domFruit.remove();
       }, 1000);
@@ -57,8 +63,8 @@ class MoveFruits {
 
 class Move {
   static RenderElement(Player, ludzik) {
-    ludzik.style.left = Player._x + "px";
-    ludzik.style.top = Player._y + "px";
+    ludzik.style.left = Player.x + "px";
+    ludzik.style.top = Player.y + "px";
   }
 
   static move(event, Player1) {
@@ -72,19 +78,19 @@ class Move {
       console.log("moved right");
     }
 
-    if (Player1._y >= 775) {
+    if (Player1.y >= 775) {
       alert("YOU LOST! PLAY AGAIN :)");
       Player1.reset();
       Move.RenderElement(Player1, domRectagle);
-    } else if (Player1._y <= 0) {
+    } else if (Player1.y <= 0) {
       alert("YOU LOST! PLAY AGAIN :)");
       Player1.reset();
       Move.RenderElement(Player1, domRectagle);
-    } else if (Player1._x >= 1600) {
+    } else if (Player1.x >= 1600) {
       alert("YOU LOST! PLAY AGAIN :)");
       Player1.reset();
       Move.RenderElement(Player1, domRectagle);
-    } else if (Player1._x <= 0) {
+    } else if (Player1.x <= 0) {
       alert("YOU LOST! PLAY AGAIN :)");
       Player1.reset();
       Move.RenderElement(Player1, domRectagle);
@@ -102,7 +108,7 @@ function start() {
   // const stepOfFalling = 2;
   const intervalOfFalling = 10;
   const intervalOfNewFruit = 1000;
-  const fruits = [];
+  let fruits = [];
   setInterval(() => {
     const newDomFruit = document.createElement("div");
     newDomFruit.classList.add("fruit");
@@ -119,9 +125,27 @@ function start() {
     fruits.forEach(fruit => {
       MoveFruits.move(fruit, fruit.domFruit);
     });
+    checkCollision(fruits, player1)
   }, intervalOfFalling);
+
+  
+  function checkCollision(fruits,player) {
+ 
+    fruits.forEach(fruit => {
+      console.log(fruitWidth)
+      if ((fruit.x + fruitWidth < player.x) && (player.x + playerWidth < fruit.x) && (fruit.y + fruitHeight < player.y)) {
+        console.log('KOLIZJA')
+        // jestKolizja(fruit); // użytkownik dostaje ounkt
+      } else {
+        // nieMaKolizji(); //uzytkownik traci punkt
+        // console.log('KOLIZJA nie')
+      }
+    });
+  }
+
 }
+
 
 start();
 
-console.log(player1);
+// console.log(player1);
