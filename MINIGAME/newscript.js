@@ -135,6 +135,7 @@ function start() {
       console.log(fruitWidth)
       if ((fruit.x + fruitWidth < player.x) && (player.x + playerWidth < fruit.x) && (fruit.y + fruitHeight < player.y)) {
         console.log('KOLIZJA')
+        fruit.remove();
         // jestKolizja(fruit); // użytkownik dostaje ounkt
       } else {
         // nieMaKolizji(); //uzytkownik traci punkt
