@@ -176,6 +176,13 @@ function add() {
 
 buttonS.addEventListener("click", add);
 
+function deleteElement(index, arrayToSplice) {
+    
+  arrayToSplice.splice(index, 1);
+ 
+}
+
+
 
 // students.sort((a, b) => (a.name > b.name ? 1 : b.name > a.name ? -1 : 1));
 // teachers.sort((a, b) => (a.name > b.name ? 1 : b.name > a.name ? -1 : 1));
