@@ -2,14 +2,19 @@ const playerWidth = 30;
 const fruitWidth = 30;
 const playerHeight = 30;
 const fruitHeight = 30;
+let span = 2;
+let intervalOfFalling = 50;
+let intervalOfNewFruit = 5000;
+let minSpeed = 3;
+
 
 
 
 class Player {
   constructor(human) {
-    (this.x = human.offsetLeft), 
-    (this.y = human.offsetTop), 
-    this.points = 0, 
+    (this.x = human.offsetLeft),
+    (this.y = human.offsetTop),
+    this.points = 0,
     this.lifes = 5;
   }
 
@@ -19,7 +24,7 @@ class Player {
   right() {
     this.x += 10;
   }
-  
+
   down() {
     this.y += 10;
   }
@@ -28,10 +33,23 @@ class Player {
     this.x = 750;
     this.y = 680;
   }
-  addPoint(){
+  addPoint() {
     this.points++;
     document.querySelector('.counterPlus').innerHTML = this.points;
+
+    if (this.points >= 6) {
+      intervalOfFalling = 15;
+      intervalOfNewFruit = 1000;
+      span = 4;
+      minSpeed = 7;
+
+    }
+
+
   }
+
+
+
 }
 
 class Fruit {
@@ -40,6 +58,7 @@ class Fruit {
     this.speed = speed;
     this.x = Math.random() * 800;
     this.y = fruit.offsetTop;
+    this.stan = true;
   }
 
   down() {
@@ -112,33 +131,29 @@ let lifes = document.querySelectorAll('.life');
 document.addEventListener("keydown", event => Move.move(event, player1));
 
 function start() {
-  // const stepOfFalling = 2;
-  const intervalOfFalling = 50;
-  const intervalOfNewFruit = 5000;
+
   let fruits = [];
   setInterval(() => {
     const newDomFruit = document.createElement("div");
     newDomFruit.classList.add("fruit");
     domContainer.appendChild(newDomFruit);
     Fruit;
-    const newFruit = new Fruit(newDomFruit, Math.random() * 3 + 2);
+    const newFruit = new Fruit(newDomFruit, Math.random() * 3 + minSpeed);
 
     fruits.push(newFruit);
 
     // MoveFruits.addFruit(newFruit)
   }, intervalOfNewFruit);
 
-  setInterval(() => {
-    fruits.forEach(fruit => {
-      MoveFruits.move(fruit, fruit.domFruit);
-    });
-    checkCollision(fruits, player1)
-  }, intervalOfFalling);
-
-
+  
   function checkCollision(fruits, player) {
 
-    fruits.forEach(fruit => {
+    for (let i = 0; i < fruits.length; i++) {
+      const fruit = fruits[i];
+      
+    
+
+    // fruits.forEach(fruit => {
 
       let leftEdgeFruit = fruit.x;
       let rightEdgeFruit = fruit.x + fruitWidth;
@@ -147,41 +162,58 @@ function start() {
       let bottomEdgeFruit = fruit.y + fruitHeight;
       let topEdgePlayer = player.y;
       let bottomEdgePlayer = player.y + playerHeight;
-      let check = false;
       
 
-      if (
+
+      if ((
         (((leftEdgePplayer <= leftEdgeFruit) && (leftEdgeFruit <= rightEdgePlayer)) ||
-        ((leftEdgePplayer <= rightEdgeFruit) && (rightEdgeFruit <= rightEdgePlayer))) &&
-        ((bottomEdgeFruit >= topEdgePlayer)  && (bottomEdgeFruit <= 683)) 
-        ) {
-          
+          ((leftEdgePplayer <= rightEdgeFruit) && (rightEdgeFruit <= rightEdgePlayer))) &&
+        ((bottomEdgeFruit >= topEdgePlayer ) && (bottomEdgeFruit <= bottomEdgePlayer)) ) 
+        && fruit.stan == true
+      ) {
+        fruit.stan = false;
         console.log('KOLIZJA');
-        
-        console.log(player);
+
+        console.log(fruits);
+        console.log(fruit);
+        console.log(i);
         fruit.domFruit.remove();
-        check = true;
        
-        if (check == true){
+       
+        check = true;
+
+        
           player.addPoint();
-        }
+
         
 
       }
       // użytkownik dostaje ounkt
       else {
-        
+
 
         // nieMaKolizji(); //uzytkownik traci punkt
 
       }
-    });
 
+     
+      
+  };
+
+
+  }
+  setInterval(() => {
+    fruits.forEach(fruit => {
+      MoveFruits.move(fruit, fruit.domFruit);
+    });
+    checkCollision(fruits, player1)
+
+  }, intervalOfFalling);
 
 
 
   }
-}
+
 start();
 
 
