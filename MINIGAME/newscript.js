@@ -7,7 +7,10 @@ const fruitHeight = 30;
 
 class Player {
   constructor(human) {
-    (this.x = human.offsetLeft), (this.y = human.offsetTop);
+    (this.x = human.offsetLeft), 
+    (this.y = human.offsetTop), 
+    this.points = 0, 
+    this.lifes = 5;
   }
 
   left() {
@@ -16,9 +19,7 @@ class Player {
   right() {
     this.x += 10;
   }
-  // up() {
-  //     this._y -= 10;
-  // }
+  
   down() {
     this.y += 10;
   }
@@ -26,6 +27,10 @@ class Player {
   reset() {
     this.x = 750;
     this.y = 680;
+  }
+  addPoint(){
+    this.points++;
+    document.querySelector('.counterPlus').innerHTML = this.points;
   }
 }
 
@@ -101,12 +106,14 @@ class Move {
 const domContainer = document.querySelector(".container");
 const domRectagle = document.querySelector(".human");
 const player1 = new Player(domRectagle);
+let lifes = document.querySelectorAll('.life');
+
 
 document.addEventListener("keydown", event => Move.move(event, player1));
 
 function start() {
   // const stepOfFalling = 2;
-  const intervalOfFalling = 100;
+  const intervalOfFalling = 50;
   const intervalOfNewFruit = 5000;
   let fruits = [];
   setInterval(() => {
@@ -128,11 +135,11 @@ function start() {
     checkCollision(fruits, player1)
   }, intervalOfFalling);
 
-  
-  function checkCollision(fruits,player) {
- 
+
+  function checkCollision(fruits, player) {
+
     fruits.forEach(fruit => {
-      //left edge fruit
+
       let leftEdgeFruit = fruit.x;
       let rightEdgeFruit = fruit.x + fruitWidth;
       let leftEdgePplayer = player.x;
@@ -140,27 +147,40 @@ function start() {
       let bottomEdgeFruit = fruit.y + fruitHeight;
       let topEdgePlayer = player.y;
       let bottomEdgePlayer = player.y + playerHeight;
+      let check = false;
+      
 
-
-      // console.log(fruitWidth)
-       if ((((leftEdgePplayer <= leftEdgeFruit) && (leftEdgeFruit <= rightEdgePlayer  )) ||
-          ((leftEdgePplayer <= rightEdgeFruit) && (rightEdgeFruit <= rightEdgePlayer ))) &&
-          ((topEdgePlayer <= bottomEdgeFruit) && (bottomEdgeFruit <= bottomEdgePlayer)) ) {
-
-            console.log('KOLIZJA'); 
-            fruit.domFruit.remove();
-          }
-        // użytkownik dostaje ounkt
-       else {
-        // nieMaKolizji(); //uzytkownik traci punkt
+      if (
+        (((leftEdgePplayer <= leftEdgeFruit) && (leftEdgeFruit <= rightEdgePlayer)) ||
+        ((leftEdgePplayer <= rightEdgeFruit) && (rightEdgeFruit <= rightEdgePlayer))) &&
+        ((bottomEdgeFruit >= topEdgePlayer)  && (bottomEdgeFruit <= 683)) 
+        ) {
+          
+        console.log('KOLIZJA');
         
+        console.log(player);
+        fruit.domFruit.remove();
+        check = true;
+       
+        if (check == true){
+          player.addPoint();
+        }
+        
+
+      }
+      // użytkownik dostaje ounkt
+      else {
+        
+
+        // nieMaKolizji(); //uzytkownik traci punkt
+
       }
     });
- 
-  
 
 
-}
+
+
+  }
 }
 start();
 

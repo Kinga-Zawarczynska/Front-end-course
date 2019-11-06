@@ -129,6 +129,7 @@ const domFruit = document.querySelector('.fruit')
 const player1 = new Player(domRectagle);
 const fruit1 = new Fruit(domFruit);
 
+
 document.addEventListener('keydown', (event) => Move.move(event, player1))
 
 console.log(player1);

@@ -13,6 +13,34 @@
 
 }
 
+
+.points{
+    padding: 20px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+   
+}
+
+.counterMinus, .counterPlus {
+    padding: 7px 25px;
+    border: solid 1px #212121;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.points p, .points i{
+    
+    color: white;
+    font-size: 40px;
+}
+
+.points i{
+    color: red;
+    padding: 3px;
+}
 .fruit{
     position: absolute;
     top: 150px;
