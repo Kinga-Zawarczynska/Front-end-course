@@ -58,7 +58,7 @@ class Fruit {
     this.speed = speed;
     this.x = Math.random() * 800;
     this.y = fruit.offsetTop;
-    this.stan = true;
+    this.firstTouch = false;
   }
 
   down() {
@@ -150,10 +150,6 @@ function start() {
 
     for (let i = 0; i < fruits.length; i++) {
       const fruit = fruits[i];
-      
-    
-
-    // fruits.forEach(fruit => {
 
       let leftEdgeFruit = fruit.x;
       let rightEdgeFruit = fruit.x + fruitWidth;
@@ -169,26 +165,18 @@ function start() {
         (((leftEdgePplayer <= leftEdgeFruit) && (leftEdgeFruit <= rightEdgePlayer)) ||
           ((leftEdgePplayer <= rightEdgeFruit) && (rightEdgeFruit <= rightEdgePlayer))) &&
         ((bottomEdgeFruit >= topEdgePlayer ) && (bottomEdgeFruit <= bottomEdgePlayer)) ) 
-        && fruit.stan == true
+        && fruit.firstTouch == false
       ) {
-        fruit.stan = false;
+        fruit.firstTouch = true;
         console.log('KOLIZJA');
 
         console.log(fruits);
         console.log(fruit);
         console.log(i);
         fruit.domFruit.remove();
-       
-       
-        check = true;
-
-        
-          player.addPoint();
-
-        
+        player.addPoint();
 
       }
-      // użytkownik dostaje ounkt
       else {
 
 
