@@ -1,16 +1,20 @@
 import React from 'react';
 import Avatar from './Avatar'
 
-function ContactItem({ name, department }) {
+class ContactItem extends React.Component {
+  render() {
+    const { login, name, department } = this.props
+    const imgUrl = `https://api.adorable.io/avatars/55/${login}.png`;
     return (
-      <div className="item">
-        <Avatar login="{login}/"></Avatar>
+      <li className="item">
+        <img src={imgUrl} className="ui mini rounded image" />
         <div className="content">
           <h4 className="header">{name}</h4>
           <div className="description">{department}</div>
         </div>
-      </div>
+      </li>
     );
   }
+}
   
  export default ContactItem;
